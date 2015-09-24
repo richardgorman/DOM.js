@@ -7,12 +7,15 @@ A very simple and lightweight DOM manipulation library that is <1kb.
 - isElement()
 - addClass()
 - removeClass()
-- toggleClass()C
+- toggleClass()
 - hasClass()
 - addEvent()
 - removeEvent()
 - setAttr()
 - getAttr()
+
+
+--
 
 
 ###query()
@@ -29,6 +32,8 @@ Returns any HTMLElement objects that match any of the given selectors.
 DOM.query( 'selectors', true|false )
 ```
 
+--
+
 
 ###each()
 Description
@@ -40,6 +45,9 @@ Description
 - Coming soon
 
     Code example
+
+
+--
 
 
 ###isElement()
@@ -54,6 +62,9 @@ Description
     Code example
 
 
+--
+
+
 ###addClass()
 Description
 
@@ -64,6 +75,9 @@ Description
 - Coming soon
 
     Code example
+
+
+--
 
 
 ###removeClass()
@@ -78,6 +92,9 @@ Description
     Code example
 
 
+--
+
+
 ###toggleClass()
 Description
 
@@ -88,6 +105,9 @@ Description
 - Coming soon
 
     Code example
+
+
+--
 
 
 ###hasClass()
@@ -102,6 +122,9 @@ Description
     Code example
 
 
+--
+
+
 ###addEvent()
 Description
 
@@ -112,6 +135,9 @@ Description
 - Coming soon
 
     Code example
+
+
+--
 
 
 ###removeEvent()
@@ -126,6 +152,9 @@ Description
     Code example
 
 
+--
+
+
 ###setAttr()
 Description
 
@@ -136,6 +165,9 @@ Description
 - Coming soon
 
     Code example
+
+
+--
 
 
 ###getAttr()
