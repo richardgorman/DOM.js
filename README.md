@@ -28,6 +28,7 @@ Returns any HTMLElement objects that match any of the given selectors.
 **Returns**
 - (Array) Set of HTMLElement objects
 
+**Usage**
 ```javascript
 DOM.query( 'selectors', true|false )
 ```
