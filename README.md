@@ -2,20 +2,20 @@
 A very simple and lightweight DOM manipulation library that is <1kb.
 
 ###List of functions:
-- [query()](#query)
-- [each()](#each)
-- [isElement()](#isElement)
-- [addClass()](#addClass)
-- [removeClass()](#removeClass)
-- [toggleClass()](#toggleClass)
-- [hasClass()](#hasClass)
-- [addEvent()](#addEvent)
-- [removeEvent()](#removeEvent)
-- [setAttr()](#setAttr)
-- [getAttr()](#getAttr)
+- query()
+- each()
+- isElement()
+- addClass()
+- removeClass()
+- toggleClass()C
+- hasClass()
+- addEvent()
+- removeEvent()
+- setAttr()
+- getAttr()
 
 
-###<span name="query">query()</span>
+###query()
 Returns any HTMLElement objects that match any of the given selectors.
 
 **Parameters**
@@ -25,10 +25,12 @@ Returns any HTMLElement objects that match any of the given selectors.
 **Returns**
 - (Array) Set of HTMLElement objects
 
-    DOM.query( 'selectors', true|false )
+```javascript
+DOM.query( 'selectors', true|false )
+```
 
 
-###<span name="each">each()</span>
+###each()
 Description
 
 **Parameters**
@@ -40,7 +42,7 @@ Description
     Code example
 
 
-###<span name="isElement">isElement()</span>
+###isElement()
 Description
 
 **Parameters**
@@ -52,7 +54,7 @@ Description
     Code example
 
 
-###<span name="addClass">addClass()</span>
+###addClass()
 Description
 
 **Parameters**
@@ -64,7 +66,7 @@ Description
     Code example
 
 
-###<span name="removeClass">removeClass()</span>
+###removeClass()
 Description
 
 **Parameters**
@@ -76,7 +78,7 @@ Description
     Code example
 
 
-###<span name="toggleClass">toggleClass()</span>
+###toggleClass()
 Description
 
 **Parameters**
@@ -88,7 +90,7 @@ Description
     Code example
 
 
-###<span name="hasClass">hasClass()</span>
+###hasClass()
 Description
 
 **Parameters**
@@ -100,7 +102,7 @@ Description
     Code example
 
 
-###<span name="addEvent">addEvent()</span>
+###addEvent()
 Description
 
 **Parameters**
@@ -112,7 +114,7 @@ Description
     Code example
 
 
-###<span name="removeEvent">removeEvent()</span>
+###removeEvent()
 Description
 
 **Parameters**
@@ -124,7 +126,7 @@ Description
     Code example
 
 
-###<span name="setAttr">setAttr()</span>
+###setAttr()
 Description
 
 **Parameters**
@@ -136,7 +138,7 @@ Description
     Code example
 
 
-###<span name="getAttr">getAttr()</span>
+###getAttr()
 Description
 
 **Parameters**
