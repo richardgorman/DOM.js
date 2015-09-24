@@ -26,11 +26,11 @@ Returns any HTMLElement objects that match any of the given selectors.
 - (Boolean) Match all selectors
 
 **Returns**
-- (Array) Set of HTMLElement objects
+- (Array) HTMLElement objects
 
 **Usage**
 ```javascript
-DOM.query( 'selectors', true|false )
+DOM.query( 'selectors', true|false );
 ```
 
 --
@@ -40,42 +40,45 @@ DOM.query( 'selectors', true|false )
 Description
 
 **Parameters**
-- Coming soon
+- (Array) HTMLElement
+- (Function) Callback
 
-**Returns**
-- Coming soon
-
-    Code example
+**Usage**
+```javascript
+DOM.each( objects, function( object ) {
+    // Do something
+});
+```
 
 
 --
 
 
 ###isElement()
-Description
+Returns true is the object is a valid HTMLElement
 
 **Parameters**
-- Coming soon
+- (object) Object
 
-**Returns**
-- Coming soon
-
-    Code example
+**Usage**
+```javascript
+DOM.isElement( object );
+```
 
 
 --
 
 
 ###addClass()
-Description
+Appends a string to the object classList
 
 **Parameters**
-- Coming soon
+- (object) HTMLElement
 
-**Returns**
-- Coming soon
-
-    Code example
+**Usage**
+```javascript
+DOM.addClass( object, 'className' );
+```
 
 
 --
