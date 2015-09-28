@@ -1,5 +1,5 @@
 # DOM.js
-A very simple and lightweight DOM manipulation library that is only 1kb.
+A very simple and lightweight DOM manipulation library that is <1kb.
 
 ###List of functions:
 - query()
