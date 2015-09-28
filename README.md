@@ -4,22 +4,19 @@ A very simple and lightweight DOM manipulation library that is <1kb.
 ###List of functions:
 - query()
 - each()
-- isElement()
 - addClass()
 - removeClass()
 - toggleClass()
 - hasClass()
 - addEvent()
 - removeEvent()
-- setAttr()
-- getAttr()
 
 
 --
 
 
 ###query()
-Returns any HTMLElement objects that match any of the given selectors.
+Returns any HTMLElement objects that match any of the given selectors
 
 **Parameters**
 - (String) Selector to query the DOM
@@ -37,7 +34,7 @@ DOM.query( 'selectors', true|false );
 
 
 ###each()
-Description
+Iterates over given Array of elements
 
 **Parameters**
 - (Array) HTMLElement
@@ -54,26 +51,12 @@ DOM.each( objects, function( object ) {
 --
 
 
-###isElement()
-Returns true is the object is a valid HTMLElement
-
-**Parameters**
-- (object) Object
-
-**Usage**
-```javascript
-DOM.isElement( object );
-```
-
-
---
-
-
 ###addClass()
-Appends a string to the object classList
+Appends a string to the object's classList
 
 **Parameters**
 - (object) HTMLElement
+- (string) Class Name
 
 **Usage**
 ```javascript
@@ -85,103 +68,79 @@ DOM.addClass( object, 'className' );
 
 
 ###removeClass()
-Description
+Removes a string from the object's classList
 
 **Parameters**
-- Coming soon
+- (object) HTMLElement
+- (string) Class Name
 
-**Returns**
-- Coming soon
-
-    Code example
+**Usage**
+```javascript
+DOM.removeClass( object, 'className' );
+```
 
 
 --
 
 
 ###toggleClass()
-Description
+Appends/Removes a string to/from the object's classList
 
 **Parameters**
-- Coming soon
+- (object) HTMLElement
+- (string) Class Name
 
-**Returns**
-- Coming soon
-
-    Code example
+**Usage**
+```javascript
+DOM.toggleClass( object, 'className' );
+```
 
 
 --
 
 
 ###hasClass()
-Description
+Returns whether or not a given HTMLElement contains the given className in its classList
 
 **Parameters**
-- Coming soon
+- (object) HTMLElement
+- (string) Class Name
 
-**Returns**
-- Coming soon
-
-    Code example
+**Usage**
+```javascript
+DOM.hasClass( object, 'className' );
+```
 
 
 --
 
 
 ###addEvent()
-Description
+Registers the event and callback with the given element
 
 **Parameters**
-- Coming soon
+- (object) HTMLElement
+- (string) Event Type
+- (function) Callback
 
-**Returns**
-- Coming soon
-
-    Code example
+**Usage**
+```javascript
+DOM.addEvent( object, eventType, callback );
+```
 
 
 --
 
 
 ###removeEvent()
-Description
+Removes the event and callback from the given element
 
 **Parameters**
-- Coming soon
+- (object) HTMLElement
+- (string) Event Type
+- (function) Callback
 
-**Returns**
-- Coming soon
-
-    Code example
-
-
---
-
-
-###setAttr()
-Description
-
-**Parameters**
-- Coming soon
-
-**Returns**
-- Coming soon
-
-    Code example
-
-
---
-
-
-###getAttr()
-Description
-
-**Parameters**
-- Coming soon
-
-**Returns**
-- Coming soon
-
-    Code example
-
+**Usage**
+```javascript
+DOM.removeEvent( object, eventType, callback );
+```
