@@ -27,7 +27,7 @@ Returns any HTMLElement objects that match any of the given selectors
 
 **Usage**
 ```javascript
-DOM.query( 'selectors', true|false );
+DOM.query( 'selectors' );
 ```
 
 --
