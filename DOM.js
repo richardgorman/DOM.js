@@ -2,106 +2,260 @@
  *  DOM.js
  *
  *  Author: Richard Gorman
- *  Version 1.0
+ *  Version: 1.1.0
+ *
+ *  @todo:
+ *  - Add comments O_O
+ *  - Update README
  *______________________*/
 
 
 
 
-var DOM = (function() {
+(function( window ) {
 
-    "use strict";
+    'use strict';
 
-    // query()
-    function query(selector) {
-        return document.querySelectorAll(selector);
+    var DOM = function( selector, context ) {
+        return new DOM.init( selector, context );
+    };
+
+    var _isElement = function( obj ) {
+        return obj.nodeType === 1;
     }
 
-    // each()
-    function each(elements, callback) {
-        for (var i = 0, j = elements.length; i < j; i++) {
-            callback(elements[i]);
-        }
-    }
+    var _isDocument = function( obj ) {
+        return obj.nodeType === 9;
+    } 
 
-    // addClass()
-    function addClass(el, className) {
-        if (el.classList) {
-            el.classList.add(className);
-        }
-        else {
-            el.className += ' ' + className;
-        }
-    }
+    var _query = function( selector, context, p ) {
+        var match, matches;
 
-    // removeClass()
-    function removeClass(el, className) {
-        if (el.classList) {
-            el.classList.remove(className);
-        }
-        else {
-            el.className = el.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
-        }
-    }
+        context = context || document;
 
-    // toggleClass()
-    function toggleClass(el, className) {
-        if (el.classList) {
-            el.classList.toggle(className);
+        if ( typeof selector !== 'string' ) {
+            return ( p = false );
         }
-        else {
-            var classes = el.className.split(' '),
-                existingIndex = classes.indexOf(className);
 
-            if (existingIndex >= 0) {
-                classes.splice(existingIndex, 1);
-            }
-            else {
-                classes.push(className);
+        if ( ! _isElement( context ) && ! _isDocument( context ) ) {
+            return ( p = false );
+        }
+
+        matches = /^(?:#([\w\-]+)|(\w+)|\.([\w\-]+))$/.exec( selector );
+
+        if ( matches !== null ) {
+
+            // #id
+            if ( matches[1] !== undefined ) {
+
+                if ( _isDocument( context ) ) {
+                    match = document.getElementById( matches[1] );
+
+                    if ( match !== null ) {
+                        p.push( document.getElementById( matches[1] ) );
+                    }
+                }
             }
 
-            el.className = classes.join(' ');
-        }
-    }
+            // <tag>
+            else if (matches[2] !== undefined) {
+                [].push.apply( p, document.getElementsByTagName( matches[2] ) );
+            }
 
-    // hasClass()
-    function hasClass(el, className) {
-        if (el.classList) {
-            return el.classList.contains(className);
+            // .class
+            else if (matches[3] !== undefined) {
+                [].push.apply( p, document.getElementsByClassName( matches[3] ) );
+            }
         }
         else {
-            return new RegExp('(^| )' + className + '( |$)', 'gi').test(el.className);
+            [].push.apply( p, document.querySelectorAll( selector ) );
         }
-    }
 
-    // addEvent()
-    function addEvent(element, eventType, callback) {
-        if (_isElement(element) && typeof eventType === "string" && typeof callback === "function") {
-            element.addEventListener(eventType, callback);
+        return true;
+    };
+
+    DOM.prototype.extend = DOM.extend = function() {
+        var target = this,
+            i = 0,
+            key;
+
+        if ( arguments.length > 1 ) {
+            target = arguments[0];
+            i = 1;
         }
-    }
 
-    // removeEvent()
-    function removeEvent(element, eventType, callback) {
-        if (_isElement(element) && typeof eventType === "string" && typeof callback === "function") {
-            element.removeEventListener(eventType, callback);
+        for ( ; i < arguments.length; i++ ) {
+            for ( key in arguments[i] ) {
+                if ( arguments[i].hasOwnProperty( key ) ) {
+                    target[key] = arguments[i][key];
+                }
+            }
         }
-    }
 
-    // _isElement()
-    function _isElement(element) {
-       return (typeof HTMLElement === "object" ? element instanceof HTMLElement : element && typeof element === "object" && element !== null && element.nodeType === 1 && typeof element.nodeName === "string");
-    }
+        return target;
+    };
 
-    return {
-        query: query,
-        each: each,
-        addClass: addClass,
-        removeClass: removeClass,
-        toggleClass: toggleClass,
-        hasClass: hasClass,
-        addEvent: addEvent,
-        removeEvent: removeEvent
-    }
+    DOM.extend({
 
-})();
+        each: function(object, callback) {
+            if (!object) return false;
+
+            for (var i = object.length; i--;) {
+                callback.apply(object[i], [i]);
+            }
+
+            return this;
+        },
+
+        init: function( selector, context ) {
+
+            // Stop here if no selector found.
+            if ( ! selector ) {
+                return false;
+            }
+
+            // Just return here if selector is already a DOM object.
+            if ( selector instanceof DOM ) {
+                return selector;
+            }
+
+            // We need to borrow some array functions...
+            this.length = 0;
+            this.pop = [].pop;
+            this.push = [].push;
+            this.sort = [].sort;
+            this.splice = [].splice;
+
+            // If the selector is an Element or Document Node then setup and return that.
+            if ( _isElement( selector ) || _isDocument( selector ) ) {
+                this[0] = selector;
+                this.length = 1;
+
+                return this;
+            }
+
+            // If selector is an Array then iterate, check for nodes, setup and return them.
+            if (Array.isArray(selector)) {
+                for (var i = selector.length; i--;) {
+                    if ( _isElement( selector[i] ) || _isDocument( selector[i] ) ) {
+                        this[i] = selector[i];
+                        this.length++;
+                    }
+                }
+
+                return this;
+            }
+
+            // Ok, the selector should be a string. Let's query the DOM.
+            _query( selector, this.context, this );
+
+            return this;
+        },
+
+        onanimationend: (function() {
+            var t, el = document.createElement('fakeelement'),
+
+            animations = {
+                'animation':'animationend',
+                'OAnimation':'oAnimationEnd',
+                'MozAnimation':'animationend',
+                'WebkitAnimation':'webkitAnimationEnd'
+            }
+
+            for (t in animations) {
+                if(el.style[t] !== undefined) {
+                    return animations[t];
+                }
+            }
+        })(),
+
+        ontransitionend: (function() {
+            var t, el = document.createElement('fakeelement'),
+
+            transitions = {
+                'transition':'transitionend',
+                'OTransition':'oTransitionEnd',
+                'MozTransition':'transitionend',
+                'WebkitTransition':'webkitTransitionEnd'
+            }
+
+            for (t in transitions) {
+                if(el.style[t] !== undefined) {
+                    return transitions[t];
+                }
+            }
+        })(),
+
+        touchsupport: (function() {
+            return true == ("ontouchstart" in window || window.DocumentTouch && document instanceof DocumentTouch);
+        })()
+
+    });
+
+    DOM.prototype.extend({
+
+        each: function(callback) {
+            DOM.each(this, callback);
+
+            return this;
+        },
+
+        find: function(selector) {
+            if ( !selector ) {
+                return false;
+            }
+
+            this.context = Array.prototype.slice.call(this, [0]);
+
+            while ( this.length > 0 ) {
+                this.pop();
+            }
+
+            for ( var i = this.context.length; i--; ) {
+                _query( selector, this.context[i], this );
+            }
+
+            return this;
+        },
+
+        addClass: function(name) {
+            return this.each(function() {
+                this.classList.add(name);
+            });
+        },
+
+        removeClass: function(name) {
+            return this.each(function() {
+                this.classList.remove(name);
+            });
+        },
+        
+        hasClass: function(name) {
+            return this[0].classList.contains(name);
+        },
+
+        toggleClass: function(name) {
+            return this.each(function() {
+                this.classList.toggle(name);
+            });
+        },
+
+        addEvent: function(event, callback) {
+            return this.each(function() {
+                this.addEventListener(event.toLowerCase(), callback, false);
+            });
+        },
+
+        removeEvent: function(event, callback) {
+            return this.each(function() {
+                this.removeEventListener(event.toLowerCase(), callback, false);
+            });
+        }
+
+    });
+
+    DOM.init.prototype = DOM.prototype;
+
+    return window.DOM = DOM;
+
+})( window );
