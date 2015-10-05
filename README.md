@@ -1,7 +1,9 @@
 # DOM.js
 A very simple and lightweight DOM manipulation library that is **less then 3kb**.
 
+```javascript
 var items = DOM( '.selector' );
+```
 
 ###List of functions:
 - each()
