@@ -1,8 +1,9 @@
 # DOM.js
-A very simple and lightweight DOM manipulation library that is only 1kb.
+A very simple and lightweight DOM manipulation library that is **less then 3kb**.
+
+var items = DOM( '.selector' );
 
 ###List of functions:
-- query()
 - each()
 - addClass()
 - removeClass()
@@ -11,24 +12,6 @@ A very simple and lightweight DOM manipulation library that is only 1kb.
 - addEvent()
 - removeEvent()
 
-
---
-
-
-###query()
-Returns any HTMLElement objects that match any of the given selectors
-
-**Parameters**
-- (String) Selector to query the DOM
-- (Boolean) Match all selectors
-
-**Returns**
-- (Array) HTMLElement objects
-
-**Usage**
-```javascript
-DOM.query( 'selectors' );
-```
 
 --
 
@@ -42,7 +25,7 @@ Iterates over given Array of elements
 
 **Usage**
 ```javascript
-DOM.each( objects, function( object ) {
+DOM( ... ).each(function( object ) {
     // Do something
 });
 ```
@@ -60,7 +43,7 @@ Appends a string to the object's classList
 
 **Usage**
 ```javascript
-DOM.addClass( object, 'className' );
+DOM( ... ).addClass( 'className' );
 ```
 
 
@@ -76,7 +59,7 @@ Removes a string from the object's classList
 
 **Usage**
 ```javascript
-DOM.removeClass( object, 'className' );
+DOM( ... ).removeClass( 'className' );
 ```
 
 
@@ -92,7 +75,7 @@ Appends/Removes a string to/from the object's classList
 
 **Usage**
 ```javascript
-DOM.toggleClass( object, 'className' );
+DOM( ... ).toggleClass( 'className' );
 ```
 
 
@@ -108,7 +91,7 @@ Returns whether or not a given HTMLElement contains the given className in its c
 
 **Usage**
 ```javascript
-DOM.hasClass( object, 'className' );
+DOM( ... ).hasClass( 'className' );
 ```
 
 
@@ -125,7 +108,7 @@ Registers the event and callback with the given element
 
 **Usage**
 ```javascript
-DOM.addEvent( object, eventType, callback );
+DOM( ... ).addEvent( eventType, callback );
 ```
 
 
@@ -142,5 +125,5 @@ Removes the event and callback from the given element
 
 **Usage**
 ```javascript
-DOM.removeEvent( object, eventType, callback );
+DOM( ... ).removeEvent( eventType, callback );
 ```
