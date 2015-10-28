@@ -26,7 +26,7 @@
 
     var _isDocument = function( obj ) {
         return obj.nodeType === 9;
-    } 
+    }
 
     var _query = function( selector, context, p ) {
         var match, matches;
@@ -49,30 +49,57 @@
             if ( matches[1] !== undefined ) {
 
                 if ( _isDocument( context ) ) {
-                    match = document.getElementById( matches[1] );
+                    match = context.getElementById( matches[1] );
 
                     if ( match !== null ) {
-                        p.push( document.getElementById( matches[1] ) );
+                        p.push( context.getElementById( matches[1] ) );
                     }
                 }
             }
 
             // <tag>
             else if (matches[2] !== undefined) {
-                [].push.apply( p, document.getElementsByTagName( matches[2] ) );
+                [].push.apply( p, context.getElementsByTagName( matches[2] ) );
             }
 
             // .class
             else if (matches[3] !== undefined) {
-                [].push.apply( p, document.getElementsByClassName( matches[3] ) );
+                [].push.apply( p, context.getElementsByClassName( matches[3] ) );
             }
         }
         else {
-            [].push.apply( p, document.querySelectorAll( selector ) );
+            [].push.apply( p, context.querySelectorAll( selector ) );
         }
 
         return true;
     };
+
+    DOM.fn = DOM.prototype = {
+       version: '1.1.0',
+       constructor: DOM
+   };
+
+   /** Basic extend function */
+   DOM.fn.extend = DOM.extend = function() {
+       var target = this,
+           i = 0,
+           key;
+
+       if (arguments.length > 1) {
+           target = arguments[0];
+           i = 1;
+       }
+
+       for (; i < arguments.length; i++) {
+           for (key in arguments[i]) {
+               if (arguments[i].hasOwnProperty(key)) {
+                   target[key] = arguments[i][key];
+               }
+           }
+       }
+
+       return target;
+   };
 
     DOM.prototype.extend = DOM.extend = function() {
         var target = this,
@@ -98,10 +125,11 @@
     DOM.extend({
 
         each: function(object, callback) {
+
             if (!object) return false;
 
-            for (var i = object.length; i--;) {
-                callback.apply(object[i], [i]);
+            for (var i = 0; i < object.length; i++) {
+                callback.call(object[i], i);
             }
 
             return this;
@@ -147,7 +175,7 @@
             }
 
             // Ok, the selector should be a string. Let's query the DOM.
-            _query( selector, this.context, this );
+            _query( selector, context, this );
 
             return this;
         },
@@ -229,7 +257,7 @@
                 this.classList.remove(name);
             });
         },
-        
+
         hasClass: function(name) {
             return this[0].classList.contains(name);
         },
@@ -250,6 +278,11 @@
             return this.each(function() {
                 this.removeEventListener(event.toLowerCase(), callback, false);
             });
+        },
+
+        getIndex: function(el) {
+            var list = Array.prototype.slice.call( this );
+            return list.indexOf( el );
         }
 
     });
