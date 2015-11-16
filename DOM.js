@@ -6,7 +6,6 @@
  *
  *  @todo:
  *  - Add comments O_O
- *  - Update README
  *______________________*/
 
 
@@ -34,11 +33,13 @@
         context = context || document;
 
         if ( typeof selector !== 'string' ) {
-            return ( p = false );
+            console.error('DOM - ' + selector + ' is not a valid selector.');
+            return p = false;
         }
 
         if ( ! _isElement( context ) && ! _isDocument( context ) ) {
-            return ( p = false );
+            console.error('DOM - ' + context + ' is not a valid scontext.');
+            return p = false;
         }
 
         matches = /^(?:#([\w\-]+)|(\w+)|\.([\w\-]+))$/.exec( selector );
@@ -52,7 +53,7 @@
                     match = document.getElementById( matches[1] );
 
                     if ( match !== null ) {
-                        p.push( document.getElementById( matches[1] ) );
+                        p.push( match );
                     }
                 }
             }
@@ -98,7 +99,9 @@
     DOM.extend({
 
         each: function(object, callback) {
-            if (!object) return false;
+            if (!object) {
+                return false;
+            }
 
             for (var i = object.length; i--;) {
                 callback.apply(object[i], [i]);
@@ -118,21 +121,23 @@
             if ( selector instanceof DOM ) {
                 return selector;
             }
-
-            // We need to borrow some array functions...
-            this.length = 0;
-            this.pop = [].pop;
-            this.push = [].push;
-            this.sort = [].sort;
-            this.splice = [].splice;
-
-            // If the selector is an Element or Document Node then setup and return that.
+            
+            // If the selector is a single node then return it.
             if ( _isElement( selector ) || _isDocument( selector ) ) {
                 this[0] = selector;
                 this.length = 1;
 
                 return this;
             }
+
+            // Okay so we actually have to go and find something...
+
+            this.length = 0;
+
+            // We need to borrow some array functions...
+            this.pop = [].pop;
+            this.push = [].push;
+            this.splice = [].splice;
 
             // If selector is an Array then iterate, check for nodes, setup and return them.
             if (Array.isArray(selector)) {
@@ -208,7 +213,7 @@
             this.context = Array.prototype.slice.call(this, [0]);
 
             while ( this.length > 0 ) {
-                this.pop();
+                [].this.pop;
             }
 
             for ( var i = this.context.length; i--; ) {
@@ -242,13 +247,13 @@
 
         addEvent: function(event, callback) {
             return this.each(function() {
-                this.addEventListener(event.toLowerCase(), callback, false);
+                this.addEventListener(event, callback, false);
             });
         },
 
         removeEvent: function(event, callback) {
             return this.each(function() {
-                this.removeEventListener(event.toLowerCase(), callback, false);
+                this.removeEventListener(event, callback, false);
             });
         }
 
