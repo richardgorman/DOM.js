@@ -7,12 +7,14 @@ var items = DOM( '.selector' );
 
 ###List of functions:
 - each()
+- find()
 - addClass()
 - removeClass()
 - toggleClass()
 - hasClass()
 - addEvent()
 - removeEvent()
+- getIndex()
 
 
 --
@@ -24,6 +26,20 @@ Iterates over given Array of elements
 **Usage**
 ```javascript
 DOM( ... ).each(function( object ) {
+    // Do something
+});
+```
+
+
+--
+
+
+###find()
+Find elements inside a given context.
+
+**Usage**
+```javascript
+DOM( object ).find(function( 'selector' ) {
     // Do something
 });
 ```
@@ -98,4 +114,16 @@ Removes the event and callback from the given element
 **Usage**
 ```javascript
 DOM( ... ).removeEvent( eventType, callback );
+```
+
+
+--
+
+
+###getIndex()
+Find elements inside a given context.
+
+**Usage**
+```javascript
+DOM( object ).getIndex( object );
 ```
