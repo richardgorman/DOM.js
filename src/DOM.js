@@ -1,7 +1,7 @@
 //
 //  DOM.js
 //  Author: Richard Gorman
-//  Version: 1.2.0
+//  Version: 1.3.0
 //
 
 (function (window) {
@@ -13,7 +13,7 @@
     };
 
     DOM.fn = DOM.prototype = {
-        version: '1.1.0',
+        version: '1.3.0',
         constructor: DOM,
         
         // Detect if browser supports {Node}.classList
@@ -181,9 +181,8 @@
             });
         },
 
-        getIndex: function (el) {
-            var list = Array.prototype.slice.call(this);
-            return list.indexOf(el);
+        getIndex: function () {
+            return Array.prototype.slice.call(this[0].parentNode.children).indexOf(this[0]);
         }
 
     });
