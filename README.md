@@ -1,8 +1,8 @@
 # DOM.js
-A very simple and lightweight DOM manipulation library that is **less then 3kb**.
+A very simple and lightweight DOM manipulation library that is **less then 2kb**.
 
 ```javascript
-var items = DOM( '.selector' );
+var item = DOM( 'selector' );
 ```
 
 ###List of functions:
@@ -39,9 +39,7 @@ Find elements inside a given context.
 
 **Usage**
 ```javascript
-DOM( object ).find(function( 'selector' ) {
-    // Do something
-});
+DOM( ... ).find( 'selector' );
 ```
 
 
@@ -125,5 +123,5 @@ Find elements inside a given context.
 
 **Usage**
 ```javascript
-DOM( object ).getIndex( object );
+DOM( ... ).getIndex();
 ```
