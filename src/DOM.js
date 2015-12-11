@@ -101,14 +101,14 @@
         addClass: (function () {
             if (DOM.fn.classList) {
                 return function (name) {
-                    this.each(function () {
+                    return this.each(function () {
                         this.classList.add(name);
                     });
                 }
             }
             else {
                 return function (name) {
-                    this.each(function () {
+                    return this.each(function () {
                         this.className += ' ' + name;
                     });
                 }
@@ -118,14 +118,14 @@
         removeClass: (function () {
             if (DOM.fn.classList) {
                 return function (name) {
-                    this.each(function () {
+                    return this.each(function () {
                         this.classList.remove(name);
                     });
                 }
             }
             else {
                 return function (name) {
-                    this.each(function () {
+                    return this.each(function () {
                         this.className = this.className.replace(new RegExp('(^|\\b)' + name.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
                     });
                 }
@@ -148,14 +148,14 @@
         toggleClass: (function () {
             if (DOM.fn.classList) {
                 return function (name) {
-                    this.each(function () {
+                    return this.each(function () {
                         this.classList.toggle(name);
                     });
                 }
             }
             else {
                 return function (name) {
-                    this.each(function () {
+                    return this.each(function () {
                         var classes = this.className.split(' '),
                             existingIndex = classes.indexOf(name);
 
