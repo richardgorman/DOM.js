@@ -24,14 +24,15 @@
 
     DOM.fn.extend = DOM.extend = function () {
         var target = this,
-            key;
+            key,
+            i;
 
         if (arguments.length > 1) {
             target = arguments[0];
             i = 1;
         }
 
-        for (var i = 0; i < arguments.length; i++) {
+        for (i = 0; i < arguments.length; i++) {
             for (key in arguments[i]) {
                 if (arguments[i].hasOwnProperty(key)) {
                     target[key] = arguments[i][key];
@@ -50,7 +51,9 @@
                 return false;
             }
             
-            for (var i = 0; i < object.length; i++) {
+            var i;
+            
+            for (i = 0; i < object.length; i++) {
                 callback.call(object[i], i);
             }
 
