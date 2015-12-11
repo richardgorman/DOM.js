@@ -1,5 +1,5 @@
 # DOM.js
-A very simple and lightweight DOM manipulation library that is **less then 2kb**.
+A very simple DOM manipulation library that is **less then 2kb**.
 
 ```javascript
 var item = DOM( 'selector' );
