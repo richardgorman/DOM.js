@@ -1,11 +1,29 @@
 # DOM.js
-A very simple DOM manipulation library that is **less then 2kb**.
+A very simple and **extensible** DOM manipulation library that is **less then 2kb**.
 
 ```javascript
 var item = DOM( 'selector' );
 ```
 
-###List of functions:
+#####Add your function
+```javascript
+DOM.fn.myFunction = function(options) {
+	this.each(function() {
+		// Your code here
+	});
+};
+```
+
+#####Use your function
+```javascript
+var items = DOM( 'selector' );
+
+items.myFunction({
+    option:value...
+});
+```
+
+###List of default functions:
 - each()
 - find()
 - addClass()
