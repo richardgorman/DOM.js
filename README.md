@@ -8,7 +8,7 @@ var item = DOM( 'selector' );
 #####Add your function
 ```javascript
 DOM.fn.myFunction = function(options) {
-	this.each(function() {
+	return this.each(function() {
 		// Your code here
 	});
 };
