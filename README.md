@@ -43,7 +43,7 @@ item.myFunction( { option: value } );
 #####DOM.ready()
 Perform a task when the window 'load' event is fired
 
-**Usage**
+_Usage_
 ```javascript
 DOM.ready(function() {
 
