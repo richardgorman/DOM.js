@@ -1,145 +1,53 @@
-# DOM.js
-A very simple and **extensible** DOM manipulation library that is **less then 2kb**.
+## DOM.js
+A very simple and extensible DOM manipulation library that is less then 2kb. The DOM object acts as a wrapper that allows extra functions to be available for queried nodes.
 
+```text
+Changelog: 1.3.0 - 1.4.0
+
+→ Separated the old built-in functions into optional plugins.
+→ Changed the way extending works. Now should be done using prototype.
+```
+
+```text
+Browser Compatibility
+
+→ IE9+
+→ Android 4.3+
+```
+
+#####Query the DOM
 ```javascript
 var item = DOM( 'selector' );
 ```
 
-#####Add your function
+#####Extend
 ```javascript
-DOM.fn.myFunction = function(options) {
-	return this.each(function() {
-		// Your code here
-	});
+DOM.prototype.myFunction = function(args) {
+
+	// Do something
+
 };
 ```
 
-#####Use your function
+#####Call
 ```javascript
-var items = DOM( 'selector' );
-
-items.myFunction({
-    option:value...
-});
+item.myFunction( { option: value } );
 ```
-
-###List of default functions:
-- each()
-- find()
-- addClass()
-- removeClass()
-- toggleClass()
-- hasClass()
-- addEvent()
-- removeEvent()
-- getIndex()
 
 
 --
 
 
-###each()
-Iterates over given Array of elements
+###Built-in functions
+
+#####DOM.ready()
+Perform a task when the window 'load' event is fired
 
 **Usage**
 ```javascript
-DOM( ... ).each(function( object ) {
+DOM.ready(function() {
+
     // Do something
+
 });
-```
-
-
---
-
-
-###find()
-Find elements inside a given context.
-
-**Usage**
-```javascript
-DOM( ... ).find( 'selector' );
-```
-
-
---
-
-
-###addClass()
-Appends a string to the object's classList
-
-**Usage**
-```javascript
-DOM( ... ).addClass( 'className' );
-```
-
-
---
-
-
-###removeClass()
-Removes a string from the object's classList
-
-**Usage**
-```javascript
-DOM( ... ).removeClass( 'className' );
-```
-
-
---
-
-
-###toggleClass()
-Appends/Removes a string to/from the object's classList
-
-**Usage**
-```javascript
-DOM( ... ).toggleClass( 'className' );
-```
-
-
---
-
-
-###hasClass()
-Returns whether or not a given HTMLElement contains the given className in its classList
-
-**Usage**
-```javascript
-DOM( ... ).hasClass( 'className' );
-```
-
-
---
-
-
-###addEvent()
-Registers the event and callback with the given element
-
-**Usage**
-```javascript
-DOM( ... ).addEvent( eventType, callback );
-```
-
-
---
-
-
-###removeEvent()
-Removes the event and callback from the given element
-
-**Usage**
-```javascript
-DOM( ... ).removeEvent( eventType, callback );
-```
-
-
---
-
-
-###getIndex()
-Find elements inside a given context.
-
-**Usage**
-```javascript
-DOM( ... ).getIndex();
 ```
