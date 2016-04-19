@@ -9,7 +9,7 @@
 //  addEvent()
 //
 DOM.prototype.addEvent = function (event, callback) {
-    return DOM.each(function () {
+    return DOM.each(this, function () {
         this.addEventListener(event, callback, false);
     });
 };
@@ -18,7 +18,7 @@ DOM.prototype.addEvent = function (event, callback) {
 //  removeEvent()
 //
 DOM.prototype.removeEvent = function (event, callback) {
-    return DOM.each(function () {
-        thiremove(event, callback, false);
+    return DOM.each(this, function () {
+        this.removeEventListener(event, callback, false);
     });
 };

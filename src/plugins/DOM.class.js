@@ -12,13 +12,13 @@ DOM.prototype.addClass = (function(name) {
     // Check for the classList property
     if (!!document.body.classList) {
         return function(name) {
-            return DOM.each(function() {
+            return DOM.each(this, function() {
                 this.classList.add(name);
             });
         };
     } else {
         return function(name) {
-            return DOM.each(function() {
+            return DOM.each(this, function() {
                 this.className += ' ' + name;
             });
         };
@@ -32,13 +32,13 @@ DOM.prototype.removeClass = (function(name) {
     // Check for the classList property
     if (!!document.body.classList) {
         return function(name) {
-            return DOM.each(function() {
+            return DOM.each(this, function() {
                 this.classList.remove(name);
             });
         };
     } else {
         return function(name) {
-            return DOM.each(function() {
+            return DOM.each(this, function() {
                 this.className = this.className.replace(new RegExp('(^|\\b)' + name.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
             });
         };
@@ -70,14 +70,14 @@ DOM.prototype.toggleClass = (function (name) {
     // Check for the classList property
     if (!!document.body.classList) {
         return function (name) {
-            return DOM.each(function () {
+            return DOM.each(this, function () {
                 this.classList.toggle(name);
             });
         };
     }
     else {
         return function (name) {
-            return DOM.each(function () {
+            return DOM.each(this, function () {
                 var classes = this.className.split(' '),
                     existingIndex = classes.indexOf(name);
 
