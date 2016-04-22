@@ -2,7 +2,6 @@
 //  DOM.event.js
 //  Author: Richard Gorman
 //  Description: Gives addEvent() and removeEvent()
-//  Version: 1.0
 //
 
 //

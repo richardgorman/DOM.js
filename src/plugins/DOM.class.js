@@ -2,7 +2,6 @@
 //  DOM.class.js
 //  Author: Richard Gorman
 //  Description: Gives addClass(), removeClass(), toggleClass() and hasClass()
-//  Version: 1.0
 //
 
 //

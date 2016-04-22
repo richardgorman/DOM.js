@@ -1,8 +1,7 @@
 //
 //  DOM.find.js
 //  Author: Richard Gorman
-//  Description: Adds find().
-//  Version: 1.0
+//  Description: Adds find()
 //
 
 DOM.prototype.find = function(selector) {

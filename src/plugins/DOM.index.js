@@ -1,8 +1,7 @@
 //
 //  DOM.index.js
 //  Author: Richard Gorman
-//  Description: Adds index().
-//  Version: 1.0
+//  Description: Adds index()
 //
 
 DOM.prototype.index = function () {
