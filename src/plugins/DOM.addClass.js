@@ -1,7 +1,7 @@
 //
 //  Name: DOM.addClass.js
 //  Author: Richard Gorman
-//  Description: 
+//  Description: Adds a class to nodes.
 //
 
 DOM.prototype.addClass = (function(name) {
