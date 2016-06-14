@@ -1,7 +1,7 @@
 //
-//  DOM.find.js
+//  Name: DOM.find.js
 //  Author: Richard Gorman
-//  Description: Adds find()
+//  Description: Finds children matching the given selector within a context.
 //
 
 DOM.prototype.find = function(selector) {

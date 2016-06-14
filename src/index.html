@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DOM test</title>
+    <style type="text/css">
+        html {
+            min-height: 100%;
+        }
+        body {
+            height: 100%;
+            margin: 0;
+            padding-bottom: 100vh;
+        }
+        p {
+            background: green;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+<p>This is my content.</p>
+
+<script type="text/javascript" src="core/DOM.js"></script>
+<script type="text/javascript" src="plugins/DOM.addClass.js"></script>
+<script type="text/javascript" src="plugins/DOM.removeClass.js"></script>
+<script type="text/javascript" src="plugins/DOM.toggleClass.js"></script>
+<script type="text/javascript" src="plugins/DOM.inView.js"></script>
+<script type="text/javascript" src="plugins/DOM.addEvent.js"></script>
+<script type="text/javascript" src="plugins/DOM.triggerEvent.js"></script>
+<script type="text/javascript">
+    var p = DOM('p');
+    p.addClass('hello')
+    p.removeClass('hello')
+    p.toggleClass('hiya');
+    p.addEvent('mouseenter', function() {
+        console.log('P Clicked');
+    });
+
+
+    DOM('body').addEvent('click', function() {
+        console.log('Body Clicked');
+        p.triggerEvent('mouseenter');
+    });
+</script>
+</body>
+</html>

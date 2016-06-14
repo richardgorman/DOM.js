@@ -1,7 +1,7 @@
 //
-//  DOM.index.js
+//  Name: DOM.index.js
 //  Author: Richard Gorman
-//  Description: Adds index()
+//  Description: Returns the index of the node, relative to the parent node.
 //
 
 DOM.prototype.index = function () {

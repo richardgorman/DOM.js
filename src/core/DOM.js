@@ -1,7 +1,7 @@
 //
-//  DOM.js
+//  Name: DOM.js
 //  Author: Richard Gorman
-//  Version: 1.4.0
+//  Version: 1.5.0
 //
 
 (function(window) {
@@ -32,7 +32,7 @@
     };
 
     DOM.extend({
-        ready: function( func ) {
+        ready: function(func) {
             if (typeof func === 'function') {
                 window.addEventListener('load', func);
             }
